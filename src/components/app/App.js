@@ -1,12 +1,15 @@
 import React from 'react';
-import DriversTable from '../drivers-table/driverst-table';
+import DriversTable from '../drivers-table/drivers-table';
 import styled from 'styled-components';
+import Theme from '../theme/theme';
 
 function App() {
 	return (
-		<Container>
-			<DriversTable />
-		</Container>
+		<Theme>
+			<Container>
+				<DriversTable />
+			</Container>
+		</Theme>
 	);
 }
 

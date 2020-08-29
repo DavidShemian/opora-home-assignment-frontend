@@ -1,25 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import axios from 'axios';
-import Loader from 'react-spinners/ClipLoader';
 
-const DriversTable = () => {
-	const [drivers, setDrivers] = useState([]);
-
-	useEffect(() => {
-		async function fetchData() {
-			try {
-				const result = await axios('http://localhost:6500/drivers/current-season');
-
-				setDrivers(result.data);
-			} catch (e) {
-				console.error(e);
-			}
-		}
-
-		fetchData();
-	}, []);
-
+const DriversTableDesktop = ({ drivers }) => {
 	const renderDrivesTable = () => {
 		const tableHead = getTableHead();
 		const tableBody = getTableBody();
@@ -62,23 +44,8 @@ const DriversTable = () => {
 		return <tbody>{tableBodyContent}</tbody>;
 	};
 
-	const currentSeason = new Date().getFullYear();
-
-	return (
-		<Container>
-			<h1>Drivers</h1>
-			<h5>{currentSeason} drivers sorted by wins</h5>
-			{drivers.length > 0 ? renderDrivesTable() : <Loader />}
-		</Container>
-	);
+	return renderDrivesTable();
 };
-
-const Container = styled.div`
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-`;
 
 const Table = styled.table`
 	width: 90%;
@@ -86,10 +53,10 @@ const Table = styled.table`
 	margin: 20px auto;
 	padding: 20px;
 	border-collapse: collapse;
-	background-color: white;
+	background-color: ${(props) => props.theme.colors.white};
 
 	thead {
-		background-color: #f5f7f9;
+		background-color: ${(props) => props.theme.colors.offWhite};
 	}
 
 	th {
@@ -98,7 +65,7 @@ const Table = styled.table`
 	}
 
 	tr:hover {
-		background-color: #f5f7f9;
+		background-color: ${(props) => props.theme.colors.offWhite};
 	}
 
 	td {
@@ -107,8 +74,9 @@ const Table = styled.table`
 
 	td,
 	th {
-		border: 0.5px solid #2125292b;
+		border: 0.5px solid;
+		border-color: ${(props) => props.theme.colors.lightGrey};
 	}
 `;
 
-export default DriversTable;
+export default DriversTableDesktop;

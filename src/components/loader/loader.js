@@ -1,6 +1,8 @@
 import React from 'react';
 import MoonLoader from 'react-spinners/ClipLoader';
 
-export const Loader = () => {
-	return <MoonLoader />;
+const Loader = ({ className }) => {
+	return <MoonLoader className={className} />;
 };
+
+export default Loader;
