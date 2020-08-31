@@ -1,22 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const DriversTableDesktop = ({ drivers }) => {
-	const renderDrivesTable = () => {
-		const tableHead = getTableHead();
-		const tableBody = getTableBody();
-
-		return (
-			<Table>
-				{tableHead}
-				{tableBody}
-			</Table>
-		);
-	};
-
+const DriversTableDesktop = ({ drivers, columns }) => {
 	const getTableHead = () => {
-		const columns = ['avatar', 'name', 'nationality', 'position', 'points'];
-
 		const tableHeadContent = columns.map((key, index) => {
 			return <th key={index}>{key}</th>;
 		});
@@ -44,6 +30,18 @@ const DriversTableDesktop = ({ drivers }) => {
 		return <tbody>{tableBodyContent}</tbody>;
 	};
 
+	const renderDrivesTable = () => {
+		const tableHead = getTableHead();
+		const tableBody = getTableBody();
+
+		return (
+			<Table>
+				{tableHead}
+				{tableBody}
+			</Table>
+		);
+	};
+
 	return renderDrivesTable();
 };
 
@@ -54,9 +52,10 @@ const Table = styled.table`
 	padding: 20px;
 	border-collapse: collapse;
 	background-color: ${(props) => props.theme.colors.white};
-
+	overflow: hidden;
 	thead {
 		background-color: ${(props) => props.theme.colors.offWhite};
+		text-transform: capitalize;
 	}
 
 	th {
@@ -65,7 +64,7 @@ const Table = styled.table`
 	}
 
 	tr:hover {
-		background-color: ${(props) => props.theme.colors.offWhite};
+		background-color: ${(props) => props.theme.colors.lightGrey};
 	}
 
 	td {

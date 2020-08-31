@@ -4,14 +4,19 @@ import axios from 'axios';
 import ComponentContainer from '../component-container/component-container';
 import Loader from '../loader/loader';
 import DriversTableDesktop from './drivers-table-desktop';
+import DriversTableMobile from './drivers-table-mobile';
+import useIsMobile from '../use-is-mobile/use-is-mobile';
+import { getFullEndPoint } from '../../common/request';
 
 const DriversTable = () => {
 	const [drivers, setDrivers] = useState([]);
+	const columns = ['avatar', 'name', 'nationality', 'position', 'points'];
+	const isMobile = useIsMobile();
 
 	useEffect(() => {
 		async function fetchData() {
 			try {
-				const result = await axios('http://localhost:6500/drivers/current-season');
+				const result = await axios(getFullEndPoint('/drivers/current-season'));
 
 				setDrivers(result.data);
 			} catch (e) {
@@ -34,11 +39,23 @@ const DriversTable = () => {
 		);
 	};
 
+	const renderTable = () => {
+		return isDataLoaded() ? (
+			isMobile ? (
+				<DriversTableMobile drivers={drivers} columns={columns} />
+			) : (
+				<DriversTableDesktop drivers={drivers} columns={columns} />
+			)
+		) : (
+			<CenteredLoader />
+		);
+	};
+
 	return (
 		<Container>
 			<h1>Drivers</h1>
 			<h5>{currentSeason} drivers sorted by wins</h5>
-			{isDataLoaded() > 0 ? <DriversTableDesktop drivers={drivers} /> : <CenteredLoader />}
+			{renderTable()}
 		</Container>
 	);
 };

@@ -5,12 +5,6 @@ const ComponentContainer = ({ className, children }) => <StyledContainer classNa
 
 const StyledContainer = styled.div`
 	padding-top: 20px;
-	margin: 0 auto 40px auto;
-	width: 95%;
-
-	@media (max-width: $screen-md) {
-		padding-top: 70px;
-	}
 `;
 
 export default ComponentContainer;
