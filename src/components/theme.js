@@ -6,6 +6,7 @@ const theme = {
 		offWhite: '#f5f7f9',
 		lightGrey: '#2125292b',
 		white: '#fff',
+		error: '#FF1A1A',
 	},
 };
 

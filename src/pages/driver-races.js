@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
-import ComponentContainer from '../components/component-container/component-container';
-import useIsMobile from '../components/use-is-mobile/use-is-mobile';
-import { getFullEndPoint } from '../common/request';
+import ComponentContainer from '../components/component-container';
+import useIsMobile from '../hooks/use-is-mobile';
+import { getFullEndPoint } from '../services/http';
 import DriverRacesDesktop from '../components/driver-races/driver-races-desktop';
 import DriverRacesMobile from '../components/driver-races/driver-races-mobile';
 import CenteredSpinner from '../components/centered-spinner';

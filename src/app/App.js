@@ -1,29 +1,32 @@
 import React from 'react';
-import styled from 'styled-components';
-import Theme from '../components/theme/theme';
+import Theme from '../components/theme';
+import LoggedInRoute from '../components/logged-in-route';
 import DriversPage from '../pages/current-season-drivers';
 import DriverRaces from '../pages/driver-races';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { Route, BrowserRouter as Router, Switch, Redirect } from 'react-router-dom';
+import LoginRegister from '../pages/login-register';
+import Menu from '../components/menu';
 
 function App() {
 	return (
 		<Theme>
-			<Container>
+			<div>
 				<Router>
+					<Menu />
 					<Switch>
-						<Route exact path='/'>
-							<DriversPage />
+						<LoggedInRoute exact path='/drivers' Component={DriversPage}></LoggedInRoute>
+						<LoggedInRoute exact path='/driver/:driverId/races' Component={DriverRaces}></LoggedInRoute>
+						<Route exact path='/connect'>
+							<LoginRegister />
 						</Route>
-						<Route exact path='/driver/:driverId/races'>
-							<DriverRaces />
-						</Route>
+						<LoggedInRoute id='Default-Route'>
+							<Redirect to='/drivers' />
+						</LoggedInRoute>
 					</Switch>
 				</Router>
-			</Container>
+			</div>
 		</Theme>
 	);
 }
-
-const Container = styled.div``;
 
 export default App;

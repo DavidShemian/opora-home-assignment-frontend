@@ -1,5 +1,4 @@
-import React, { Fragment, useRef, useState, useEffect, useCallback } from 'react';
-import Switch from 'react-switch';
+import React, { useRef, useState, useEffect, useCallback } from 'react';
 import styled from 'styled-components';
 import Swiper from 'react-id-swiper';
 import 'swiper/swiper.scss';

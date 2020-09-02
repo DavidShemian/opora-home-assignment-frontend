@@ -3,6 +3,10 @@ import ReactDOM from 'react-dom';
 import './index.scss';
 import App from './app/App';
 import * as serviceWorker from './serviceWorker';
+import { setAuthorizationHeaderToAllRequests, setUnauthorizedInterceptor } from './services/http';
+
+setAuthorizationHeaderToAllRequests();
+setUnauthorizedInterceptor();
 
 ReactDOM.render(
 	<React.StrictMode>
