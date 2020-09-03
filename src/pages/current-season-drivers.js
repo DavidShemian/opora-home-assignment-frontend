@@ -11,8 +11,10 @@ import { useHistory } from 'react-router-dom';
 import PageTitle from '../components/page-title';
 
 const CurrentSeasonDriversPage = () => {
-	const rowsValuesProperties = ['name', 'avatar', 'position', 'nationality', 'points', 'wins'];
-	const columnsNames = rowsValuesProperties;
+	const rowsValuesProperties = ['name', 'position', 'nationality', 'points', 'wins'];
+	const rowsValuesPropertiesDesktop = ['avatar', ...rowsValuesProperties]; // Adds avatar to desktop table
+	const columnsNames = [...rowsValuesProperties];
+	const columnsNamesDesktop = [...rowsValuesPropertiesDesktop];
 
 	const [drivers, setDrivers] = useState([]);
 	const isMobile = useIsMobile();
@@ -20,13 +22,13 @@ const CurrentSeasonDriversPage = () => {
 
 	const setDriversToDisplay = (drivers) => {
 		const driversWithImgAsAvatar = drivers.map((driver) => {
-            return {
-                ...driver,
+			return {
+				...driver,
 				avatar: <img src={driver.avatar} alt='avatar' />,
 			};
-        });
-        
-    setDrivers(driversWithImgAsAvatar)
+		});
+
+		setDrivers(driversWithImgAsAvatar);
 	};
 
 	useEffect(() => {
@@ -64,8 +66,8 @@ const CurrentSeasonDriversPage = () => {
 			) : (
 				<CurrentSeasonDriversDesktop
 					drivers={drivers}
-					columnsNames={columnsNames}
-					rowsValuesProperties={rowsValuesProperties}
+					columnsNames={columnsNamesDesktop}
+					rowsValuesProperties={rowsValuesPropertiesDesktop}
 					onRowClick={onDriverClick}
 				/>
 			)
@@ -89,7 +91,7 @@ const Container = styled(ComponentContainer)`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-    justify-content: center;
+	justify-content: center;
 `;
 
 export default CurrentSeasonDriversPage;

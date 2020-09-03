@@ -11,7 +11,7 @@ import MobileCardList from '../mobile-table';
 const CurrentSeasonDriversMobile = ({ drivers, columnsNames, rowsValuesProperties, onCardClick }) => {
 	const [isSwiper, setIsSwiper] = useState(true);
 
-	const getCardsList = () => {
+	const getSlides = () => {
 		return drivers.map(({ name, nationality, position, points }, index) => {
 			return (
 				<Card key={index} onClick={() => (onCardClick ? onCardClick(index) : '')}>
@@ -55,7 +55,7 @@ const CurrentSeasonDriversMobile = ({ drivers, columnsNames, rowsValuesPropertie
 			<SwitchViewsTypeButton />
 			<ViewTypeLabel>{isSwiper ? 'Swiper' : 'List'}</ViewTypeLabel>
 			{isSwiper ? (
-				<MobileSwiper slides={getCardsList()} />
+				<MobileSwiper slides={getSlides()} />
 			) : (
 				<MobileCardList
 					cardsValues={drivers}
