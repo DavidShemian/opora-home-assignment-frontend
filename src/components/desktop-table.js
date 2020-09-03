@@ -22,6 +22,7 @@ const DesktopTable = ({ columnsNames, rowsValues, rowsValuesProperties, onRowCli
 			return <th key={index}>{key}</th>;
 		});
 
+		tableColumns.unshift(<th key={'index'}>#</th>); // Adds row number column to each table
 		return (
 			<thead>
 				<tr>{tableColumns}</tr>
@@ -34,6 +35,7 @@ const DesktopTable = ({ columnsNames, rowsValues, rowsValuesProperties, onRowCli
 			const tableDataCells = rowsValuesProperties.map((valueProperty, index) => <td key={index}>{value[valueProperty]}</td>);
 			return (
 				<tr key={index} onClick={() => (onRowClick ? onRowClick(index) : '')}>
+					<td key={'row-number'}>{index + 1}</td>
 					{tableDataCells}
 				</tr>
 			);
@@ -84,7 +86,7 @@ const DesktopTable = ({ columnsNames, rowsValues, rowsValuesProperties, onRowCli
 
 	const changeNumberOfRowsPerPage = ({ target }) => {
 		setNumOfRowsPerPage(+target.value);
-		setPage(1);
+		setPage(0);
 		setWasNumOfRowsPerPageChange(true);
 	};
 
@@ -156,10 +158,12 @@ const DesktopTable = ({ columnsNames, rowsValues, rowsValuesProperties, onRowCli
 
 	return (
 		<Container>
-			<Table>
-				{tableHead}
-				{tableBodyPerPage}
-			</Table>
+			<TableContainer>
+				<Table>
+					{tableHead}
+					{tableBodyPerPage}
+				</Table>
+			</TableContainer>
 			<PageContainer>
 				<InlineContainer>
 					<ChangePageButton disabled={isFirstPage()} onClick={() => changePage(page - 1)}>
@@ -183,15 +187,19 @@ const DesktopTable = ({ columnsNames, rowsValues, rowsValuesProperties, onRowCli
 const Container = styled.div`
 	display: flex;
 	flex-direction: column;
-	align-items: center;
+	margin: auto;
 	width: 100%;
+`;
+
+const TableContainer = styled.div`
+	overflow-x: auto;
 `;
 
 const PageContainer = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	margin-top: 15px;
+	margin: auto;
 	padding: 20px;
 
 	input {
@@ -202,13 +210,10 @@ const PageContainer = styled.div`
 `;
 
 const Table = styled.table`
-	width: 80%;
-	min-width: 300px;
-	margin: 20px auto;
-	padding: 20px;
-	border-collapse: collapse;
-	background-color: ${({ theme }) => theme.colors.white};
-	overflow: hidden;
+	width: 90%;
+	font-size: 12px;
+	margin: auto;
+    margin-top: 20px;
 	thead {
 		background-color: ${({ theme }) => theme.colors.offWhite};
 		text-transform: capitalize;
@@ -218,6 +223,12 @@ const Table = styled.table`
 		tr {
 			:hover {
 				cursor: pointer;
+			}
+		}
+		td {
+			img {
+				width: 50px;
+				height: 50px;
 			}
 		}
 	}
@@ -250,8 +261,8 @@ const InlineContainer = styled.div`
 const NumberOfRowsContainer = styled(InlineContainer)`
 	display: flex;
 	align-items: center;
-	margin-top: 20px;
 	padding: 20px;
+	margin: auto;
 
 	select {
 		margin-left: 10px;

@@ -10,20 +10,31 @@ import CurrentSeasonDriversDesktop from '../components/current-season-drivers/cu
 import { useHistory } from 'react-router-dom';
 import PageTitle from '../components/page-title';
 
-const DriversPage = () => {
-	const rowsValuesProperties = ['name', 'position', 'nationality', 'points'];
+const CurrentSeasonDriversPage = () => {
+	const rowsValuesProperties = ['name', 'avatar', 'position', 'nationality', 'points', 'wins'];
 	const columnsNames = rowsValuesProperties;
 
 	const [drivers, setDrivers] = useState([]);
 	const isMobile = useIsMobile();
 	const history = useHistory();
 
+	const setDriversToDisplay = (drivers) => {
+		const driversWithImgAsAvatar = drivers.map((driver) => {
+            return {
+                ...driver,
+				avatar: <img src={driver.avatar} alt='avatar' />,
+			};
+        });
+        
+    setDrivers(driversWithImgAsAvatar)
+	};
+
 	useEffect(() => {
 		async function fetchData() {
 			try {
 				const result = await axios(getFullEndPoint('/drivers/current-season'));
 
-				setDrivers(result.data);
+				setDriversToDisplay(result.data.drivers);
 			} catch (e) {
 				console.error(e);
 			}
@@ -78,8 +89,7 @@ const Container = styled(ComponentContainer)`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	min-height: 500px;
-	position: relative;
+    justify-content: center;
 `;
 
-export default DriversPage;
+export default CurrentSeasonDriversPage;

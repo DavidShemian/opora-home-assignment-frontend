@@ -6,6 +6,7 @@ import { validate as validateEmail } from 'email-validator';
 import { getFullEndPoint, httpResponseCodes } from '../services/http';
 import { saveTokenToLocalStorage } from '../services/authentication';
 import { useHistory } from 'react-router-dom';
+import ComponentContainer from '../components/component-container';
 
 const LoginRegisterPage = () => {
 	const [isLogin, setIsLogin] = useState(true);
@@ -30,6 +31,7 @@ const LoginRegisterPage = () => {
 		try {
 			const endPoint = isLogin ? 'login' : 'register';
 			const result = await axios.post(getFullEndPoint(`/authentication/${endPoint}`), { email, password });
+            console.log('submit -> result.data', result.data);
 			saveTokenToLocalStorage(result.data.token);
 			history.push('/drivers');
 		} catch (error) {
@@ -112,10 +114,10 @@ const LoginRegisterPage = () => {
 	);
 };
 
-const Container = styled.div`
+const Container = styled(ComponentContainer)`
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
+
 	align-items: center;
 	position: relative;
 	height: 100vh;

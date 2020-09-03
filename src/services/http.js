@@ -12,9 +12,8 @@ export const httpResponseCodes = {
 };
 
 export const setAuthorizationHeaderToAllRequests = () => {
-	const token = getToken();
-
 	axios.interceptors.request.use((config) => {
+        const token = getToken();
 		config.headers.Authorization = token;
 
 		return config;
@@ -24,7 +23,6 @@ export const setAuthorizationHeaderToAllRequests = () => {
 export const setUnauthorizedInterceptor = () => {
 	axios.interceptors.response.use(
 		(response) => {
-			console.log('setUnauthorizedInterceptor -> response', response);
 			return response;
 		},
 		(error) => {

@@ -4,7 +4,6 @@ export const saveTokenToLocalStorage = (token) => {
 
 export const getIsLoggedIn = () => {
 	const token = getToken();
-	console.log('getIsLoggedIn -> token', token);
 
 	return !!token;
 };

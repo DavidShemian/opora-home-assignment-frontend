@@ -8,7 +8,7 @@ const PageTitle = ({ children }) => {
 const Title = styled.div`
 	display: flex;
 	align-items: center;
-	width: 80%;
+    margin: auto;
 	h1,
 	h5 {
 		margin-right: 20px;

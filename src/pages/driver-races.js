@@ -54,8 +54,10 @@ const DriverRacesPage = () => {
 				}
 
 				const { driverName } = history.location.state;
-				setDriverName(driverName);
-				setDriverRaces(result.data);
+                
+                console.log('fetchData -> result.data', result.data);
+                setDriverName(driverName);
+				setDriverRaces(result.data.driverRaces);
 			} catch (e) {
 				history.push('/');
 				alert('Unable to fetch data');
@@ -100,8 +102,7 @@ const Container = styled(ComponentContainer)`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	min-height: 500px;
-	position: relative;
+    justify-content: center;
 `;
 
 export default DriverRacesPage;

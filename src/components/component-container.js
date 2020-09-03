@@ -5,7 +5,9 @@ const ComponentContainer = ({ className, children }) => <StyledContainer classNa
 
 const StyledContainer = styled.div`
 	padding-top: 50px;
-	padding-bottom: 20px;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
 `;
 
 export default ComponentContainer;

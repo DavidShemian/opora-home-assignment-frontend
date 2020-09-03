@@ -1,7 +1,7 @@
 import React from 'react';
 import Theme from '../components/theme';
 import LoggedInRoute from '../components/logged-in-route';
-import DriversPage from '../pages/current-season-drivers';
+import CurrentSeasonDriversPage from '../pages/current-season-drivers';
 import DriverRaces from '../pages/driver-races';
 import { Route, BrowserRouter as Router, Switch, Redirect } from 'react-router-dom';
 import LoginRegister from '../pages/login-register';
@@ -14,7 +14,7 @@ function App() {
 				<Router>
 					<Menu />
 					<Switch>
-						<LoggedInRoute exact path='/drivers' Component={DriversPage}></LoggedInRoute>
+						<LoggedInRoute exact path='/drivers' Component={CurrentSeasonDriversPage}></LoggedInRoute>
 						<LoggedInRoute exact path='/driver/:driverId/races' Component={DriverRaces}></LoggedInRoute>
 						<Route exact path='/connect'>
 							<LoginRegister />
