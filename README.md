@@ -9,7 +9,7 @@ David Shemian solution for Opora home assignment - Front End
 
 ## Available Scripts
 
-### `npm start production`
+### `npm run production`
 
     Use this script in order to install all dependencies and run the app
 
