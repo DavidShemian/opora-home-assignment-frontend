@@ -214,6 +214,7 @@ const Table = styled.table`
 	font-size: 12px;
 	margin: auto;
     margin-top: 20px;
+    background-color: ${({ theme }) => theme.colors.white};
 	thead {
 		background-color: ${({ theme }) => theme.colors.offWhite};
 		text-transform: capitalize;
