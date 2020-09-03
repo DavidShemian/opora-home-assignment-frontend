@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-export const CardSeparator = () => {
+const CardSeparator = () => {
 	return <Separator />;
 };
 
@@ -13,3 +13,5 @@ const Separator = styled.hr`
 	margin: 1px 0;
 	padding: 0;
 `;
+
+export default CardSeparator;

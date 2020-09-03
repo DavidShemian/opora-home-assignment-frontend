@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import 'swiper/swiper.scss';
 import MobileSwiper from '../swiper/mobile-swiper';
 import Card from '../card/card';
-import { CardSeparator } from '../card/card-separator';
+import CardSeparator  from '../card/card-separator';
 import CardRow from '../card/card-row';
 import MobileCardList from '../mobile-table';
 

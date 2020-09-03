@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import 'swiper/swiper.scss';
 import Card from './card/card';
-import { CardSeparator } from './card/card-separator';
+import CardSeparator from './card/card-separator';
 import CardRow from './card/card-row';
 
 const MobileCardList = ({ cardsValues, cardTitles, rowsValuesProperties, onCardClick }) => {
